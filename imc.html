@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
+    <title>IMC - Índice de Massa Corporal</title>
+    <style>
+        /* Centralização e ajustes básicos sempre ativos */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Tema escuro */
+        body.dark-mode {
+            background-color: #000;
+            background: url('https://www.transparenttextures.com/patterns/black-mamba.png'), #000;
+            color: #ffffff;
+        }
+
+        body.dark-mode h1 {
+            text-shadow: 0 0 10px #170198;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode input,
+        body.dark-mode button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000851;
+            color: #ffffff;
+            box-shadow: 0 0 10px #170198;
+        }
+
+        body.dark-mode button:hover {
+            background-color: #0000cc;
+            cursor: pointer;
+        }
+
+        /* Tema claro */
+        body.light-mode {
+            background-color: #fff;
+            background: url('https://www.transparenttextures.com/patterns/blu-stripes.png'), #fff;
+            color: #000;
+        }
+
+        body.light-mode h1 {
+            text-shadow: 0 0 10px #000;
+            margin-bottom: 20px;
+        }
+
+
+        body.light-mode button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            color: #000;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        body.light-mode button:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 320px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+    body.dark-mode #resultado {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        width: 320px;
+        max-height: 300px;
+        overflow-y: auto;
+        text-align: left;
+    }
+
+        body.light-mode h1 {
+            text-shadow: 0 0 10px #000;
+            margin-bottom: 20px;
+        }
+
+        body.light-mode input,
+        body.light-mode button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            color: #000;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        body.light-mode button:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            background: rgba(95, 95, 95, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 320px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+<body>
+    <h1>Calculadora de IMC</h1>
+    <input type="number" id="peso" placeholder="Peso (kg)" />
+    <input type="number" id="altura" placeholder="Altura (m)" />
+    <button id="calcular">Calcular IMC</button>
+    <div id="resultado"></div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">Alternar Tema</button>
+
+    <script>
+        let isDarkMode = true;
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
+        }
+
+        document.getElementById('calcular').addEventListener('click', function () {
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            if (peso > 0 && altura > 0) {
+                const imc = peso / (altura * altura);
+                document.getElementById('resultado').innerText = `Seu IMC é: ${imc.toFixed(2)}`;
+            } else {
+                document.getElementById('resultado').innerText = 'Por favor, insira valores válidos.';
+            }
+        });
+    </script>
+</body>
+
+</html>
